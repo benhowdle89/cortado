@@ -33,3 +33,7 @@ var view = new Cortado({
 });
 
 document.body.appendChild(view.render().el);
+
+// view.close();
+
+view.remove();

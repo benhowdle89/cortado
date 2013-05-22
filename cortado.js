@@ -36,6 +36,14 @@
 		return (length == 1) ? r[0] : r;
 	}
 
+	function unbind(ele) {
+		ele.parentNode.replaceChild(ele.cloneNode(true), ele);
+	}
+
+	function removeEl(el) {
+		el.parentNode.removeChild(el);
+	}
+
 	cortado.prototype.init = function() {};
 
 	cortado.prototype.$ = function(sel) {
@@ -51,9 +59,17 @@
 			el = find(el, this.el);
 		}
 		if (!el || el.length === 0) return;
-		el.addEventListener(type, function(e){
+		el.addEventListener(type, function(e) {
 			_this[cb].call(_this, e);
 		}, false);
+	};
+
+	cortado.prototype.close = function() {
+		this.removeEvents();
+	};
+
+	cortado.prototype.remove = function() {
+		removeEl(this.el);
 	};
 
 	cortado.prototype.bindUIElements = function() {
@@ -69,6 +85,15 @@
 		for (var u in this.uiBindings) {
 			var selector = that.uiBindings[u];
 			that.ui[u] = find(selector, this.el);
+		}
+	};
+
+	cortado.prototype.removeEvents = function() {
+		for (var e in this.events) {
+			var parts = e.split(/\s/);
+			var type = parts[0];
+			var el = parts[1] || this.el;
+			unbind(el);
 		}
 	};
 
