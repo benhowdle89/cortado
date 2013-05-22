@@ -4,8 +4,23 @@ var view = new Cortado({
 		console.log('instance init');
 	},
 
+	el: '#myView',
+
+	//tagname
+
+	//className
+
+	//id
+
+	events: {
+		'click button': 'clicked'
+	},
+
+	clicked: function(){
+		alert('clicked');
+	},
+
 	render: function(){
-		this.el.innerHTML = 'hi';
 		return this;
 	}
 
