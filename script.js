@@ -4,23 +4,29 @@ var view = new Cortado({
 		console.log('instance init');
 	},
 
-	el: '#myView',
+	// el: '#myView',
 
-	//tagname
+	tagName: 'span',
 
-	//className
+	className: 'row',
 
-	//id
+	id: 'cell',
 
 	events: {
-		'click button': 'clicked'
+		'click': 'clicked'
+	},
+
+	ui: {
+		b: 'b'
 	},
 
 	clicked: function(){
-		alert('clicked');
+		console.log(this.ui.b.innerText);
 	},
 
 	render: function(){
+		this.el.innerHTML = '<b>click here</b>';
+		this.bindUIElements();
 		return this;
 	}
 
