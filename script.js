@@ -2,6 +2,8 @@ var view = new Cortado({
 
 	init: function() {
 		console.log('instance init');
+		this.listenTo('customEvent', 'render');
+		this.count = 1;
 	},
 
 	// el: '#myView',
@@ -22,10 +24,11 @@ var view = new Cortado({
 
 	clicked: function(){
 		console.log(this.ui.b.innerText);
+		this.trigger('customEvent');
 	},
 
 	render: function(){
-		this.el.innerHTML = '<b>click here</b>';
+		this.el.innerHTML = '<b>' + (this.count++) + '</b>';
 		this.bindUIElements();
 		return this;
 	}
@@ -36,4 +39,4 @@ document.body.appendChild(view.render().el);
 
 // view.close();
 
-view.remove();
+// view.remove();

@@ -44,14 +44,29 @@
 		el.parentNode.removeChild(el);
 	}
 
-	cortado.prototype.init = function() {};
+	cortado.fn = cortado.prototype;
 
-	cortado.prototype.$ = function(sel) {
+	cortado.fn.init = function() {};
+
+	cortado.fn.$ = function(sel) {
 		if (!sel) return;
 		return find(sel);
 	};
 
-	cortado.prototype.on = function(type, el, cb) {
+	cortado.fn.listenTo = function(type, cb) {
+		this.on(type, this.el, cb);
+	};
+
+	cortado.fn.trigger = function(type, data) {
+		var event = document.createEvent('HTMLEvents');
+		event.initEvent(type, true, true);
+		event.data = data || {};
+		event.eventName = type;
+		event.target = this;
+		this.el.dispatchEvent(event);
+	};
+
+	cortado.fn.on = function(type, el, cb) {
 		var _this = this;
 		if (el === this.el) {
 			el = this.el;
@@ -64,15 +79,15 @@
 		}, false);
 	};
 
-	cortado.prototype.close = function() {
+	cortado.fn.close = function() {
 		this.removeEvents();
 	};
 
-	cortado.prototype.remove = function() {
+	cortado.fn.remove = function() {
 		removeEl(this.el);
 	};
 
-	cortado.prototype.bindUIElements = function() {
+	cortado.fn.bindUIElements = function() {
 		if (!this.ui) return;
 
 		var that = this;
@@ -88,7 +103,7 @@
 		}
 	};
 
-	cortado.prototype.removeEvents = function() {
+	cortado.fn.removeEvents = function() {
 		for (var e in this.events) {
 			var parts = e.split(/\s/);
 			var type = parts[0];
