@@ -22,7 +22,7 @@
 		if (this.el) {
 			this.el = find(this.el);
 		} else {
-			this.el = d.createElement(this.tagName);
+			this.el = d.createElement(this.tagName || 'div');
 			this.el.classList.add(this.className);
 			this.el.id = this.id;
 		}
