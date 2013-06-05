@@ -3,7 +3,7 @@
 ## Features
 
 * Custom Events
-* Provides native DOM wrappers, ie. this.$('.myEls')
+* Provides native DOM wrappers, ie. `this.$('.myEls')`
 * Template Engine agnostic
 * Use an existing HTML element or let Cortado create an element for you
 * Built-in methods such as; `init`, `render`, `close`, `remove`
