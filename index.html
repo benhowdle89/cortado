@@ -1,1 +1,129 @@
-hey
+<html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="prism.css">
+	<link rel="stylesheet" type="text/css" href="animate-custom.css">
+</head>
+<body>
+<div class="wrap animated fadeIn">
+
+	<h1>cortado.js</h1>
+	<h3>A sans-jQuery&trade; View &amp; Event library for JavaScript web applications</h3>
+
+	<div class="button download"><a href="https://github.com/benhowdle89/cortado">Download on GitHub</a></div>
+
+	<h4>Features</h4>
+
+	<ul>
+		<li>Custom Events</li>
+		<li>Provides native DOM wrappers, ie. this.$('.myEls')</li>
+		<li>Template Engine agnostic</li>
+		<li>Use an existing HTML element or let Cortado create an element for you</li>
+		<li>Built-in methods such as; `init`, `render`, `close`, `remove`</li> 
+	</ul>
+
+	<h4>What would I use this for?</h4>
+	
+	<ul>
+		<li>If you don't want to use jQuery for a smaller project</li>
+		<li>If you want easy organisation of your DOM JS</li>
+		<li>If you're used to working with MV* frameworks, but they're overkill for your smaller project</li>
+		<li>You want organisation around your usage of Templating engines</li>
+	</ul>	
+
+	<h4>Browser compatibility</h4>
+
+	<ul>
+		<li>IE9+</li>
+		<li>EVERY OTHER BROWSER</li>
+	</ul>
+
+	<h4>Example usage</h4>
+
+	<pre>
+		<code class="language-javascript">
+var view = new Cortado({
+
+	/* the listenTo function will listen out for 
+	your triggered custom events. The second
+	parameter is a callback function */
+
+    init: function() {
+        console.log('instance init');
+        this.listenTo('customEvent', 'render');
+        this.count = 1;
+    },
+
+    /* either pass in a DOM element as the top level HTML
+    element of your View */
+
+    el: '#myView',
+
+    /* or a HTML tagname and attributes */
+
+    tagName: 'span',
+
+    className: 'row',
+
+    id: 'cell',
+
+    /* this is an events object, you can map [event type],
+    [selector] and then [callback] */
+
+    events: {
+        'click button': 'clicked'
+    },
+
+    /* an handy `ui` object to map a shortcut to a
+    selector, for caching etc... */
+
+    ui: {
+        button: 'button'
+    },
+
+    /* you can trigger custom events within your View
+    (or across multiple View with a Mediator Object) */
+
+    clicked: function(){
+        this.trigger('customEvent');
+    },
+
+    /* this is where you build up your HTML element.
+    You may want to use a Templating engine
+    for organisation */
+
+    render: function(){
+        this.el.innerHTML = "&lt;button&gt;" + (this.count++) + "&lt;/button&gt;";
+        this.bindUIElements();
+        console.log(this.ui.button.innerHTML);
+        return this;
+    }
+
+});
+
+/* here is where we actually put the View's HTML
+element on the page */
+
+document.body.appendChild(view.render().el);
+
+/* every view has an in-built close method for
+deregistering all events within the View */
+
+view.close();
+
+/* every view has an in-built remove method for
+removing the HTML element from the page */
+
+view.remove();
+		</code>
+	</pre>
+</div>
+
+<div class="wrap">
+	<p>Made by <a href="http://twitter.com/benhowdle">Ben Howdle</a></p>
+</div>
+
+<script type="text/javascript" src="prism.js"></script>
+</body>
+</html>
