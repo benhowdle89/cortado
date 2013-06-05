@@ -1,5 +1,7 @@
 # Cortado
 
+[Docs](http://benhowdle89.github.io/cortado/)
+
 ## Features
 
 * Custom Events
