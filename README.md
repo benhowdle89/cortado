@@ -1,6 +1,6 @@
 # Cortado
 
-[Docs](http://benhowdle89.github.io/cortado/)
+Check out the [docs](http://benhowdle89.github.io/cortado/).
 
 ## Features
 
@@ -8,7 +8,6 @@
 * Provides native DOM wrappers, ie. `this.$('.myEls')`
 * Template Engine agnostic
 * Use an existing HTML element or let Cortado create an element for you
-* Built-in methods such as; `init`, `render`, `close`, `remove`
 
 ## What would I use this for?
 
