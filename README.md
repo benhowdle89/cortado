@@ -1,6 +1,6 @@
 # Cortado
 
-Check out the [docs](http://benhowdle89.github.io/cortado/).
+Check out the [docs](http://benhowdle.im/cortado/).
 
 ## Features
 
